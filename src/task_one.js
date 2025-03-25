@@ -16,7 +16,7 @@ export function init() {
     scene = new THREE.Scene();
 
     // Камера
-    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 40);
+    camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 40);
 
     // Об'єкт рендерингу
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -39,16 +39,16 @@ export function init() {
     scene.add(ambientLight);
     
     // 1. Створюємо об'єкт куба
-    const boxGeometry = new THREE.IcosahedronGeometry(0.1, 1);
+    const boxGeometry = new THREE.IcosahedronGeometry(0.3, 0);
     // Матеріал для першого об'єкту 
     const glassMaterial = new THREE.MeshPhysicalMaterial({
         color: 0x87CEEB, 
         transparent: true,
         opacity: 0.5,
-        roughness: 0.4,
-        metalness: 0.8,
+        roughness: 0.1,
+        metalness: 0,
         reflectivity: 1.0,
-        transmission: 0.8,
+        transmission: 0,
     });
     // Створюємо меш
     boxMesh = new THREE.Mesh(boxGeometry, glassMaterial);
@@ -61,21 +61,21 @@ export function init() {
     const emissiveMaterial = new THREE.MeshStandardMaterial({
         color: 0xff4500, 
         emissive: 0xff4500, 
-        emissiveIntensity: 3, 
+        emissiveIntensity: 0.6, 
         metalness: 0.5,
-        roughness: 0.2,
+        roughness: 0.1,
     });
     // Створюємо наступний меш
     torusMesh = new THREE.Mesh(torusGeometry, emissiveMaterial);
     scene.add(torusMesh);
 
     // 3. Створюємо об'єкт Icosahedron
-    const icosahedronGeometry = new THREE.CapsuleGeometry(0.1, 1, 4, 8);
+    const icosahedronGeometry = new THREE.CapsuleGeometry(0.1, 0.3, 4, 8);
     // Матеріал для третього
     const goldMaterial = new THREE.MeshStandardMaterial({
-        color: 0xffd700,
-        metalness: 1,
-        roughness: 0.3,
+        color: 0xC0C0C0,
+        metalness: 0.95,
+        roughness: 0.2,
     });
     // Створюємо наступний меш
     icosahedronMesh = new THREE.Mesh(icosahedronGeometry, goldMaterial);
